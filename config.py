@@ -77,7 +77,7 @@ keys = [
     Key([mod, "control"], "Return", lazy.spawn("vimprobable2")),
 
     # Toggle between different layouts as defined below
-    Key([mod], "Tab", lazy.nextlayout()),
+    Key([mod], "Tab", lazy.next_layout()),
 
     Key([mod, "shift"], "c", lazy.window.kill()),
 
