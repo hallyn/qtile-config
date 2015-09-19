@@ -73,13 +73,12 @@ keys = [
         [mod, "shift"], "Return",
         lazy.layout.toggle_split()
     ),
-#    Key([mod], "Return", lazy.spawn("xterm")),
     Key([mod], "Return", lazy.spawn("st")),
     Key([mod, "control"], "Return", lazy.spawn("vimprobable2")),
 
     # Toggle between different layouts as defined below
     Key([mod], "Tab", lazy.nextlayout()),
-#    Key([mod], "w", lazy.window.kill()),
+
     Key([mod, "shift"], "c", lazy.window.kill()),
 
     Key([mod, "control"], "r", lazy.restart()),
@@ -88,7 +87,6 @@ keys = [
     Key([mod], "p", lazy.spawncmd()),
 ]
 
-#groups = [Group(i) for i in "asdfuiop"]
 groups = [Group(i) for i in "1234567890"]
 
 for i in groups:
@@ -140,7 +138,6 @@ bat1 = widget.Battery(energy_now_file='energy_now',
                     power_now_file='current_now',
                     **widget_defaults)
 
-# XXX uncomment this
 myclock = widget.Clock(format='%Y-%m-%d %a %I:%M %p', **widget_defaults)
 
 screens = [
@@ -154,7 +151,6 @@ screens = [
                 widget.Sep(foreground="ff0000"),
                 widget.Wlan(),
                 widget.Sep(foreground="ff0000"),
-                # 1 screen means this is a laptop, so let's render the battery
                 widget.TextBox("B0:"),
                 bat0,
                 widget.TextBox("B1:"),
@@ -162,7 +158,6 @@ screens = [
                 widget.Sep(foreground="ff0000"),
                 widget.Systray(**widget_defaults),
                 myclock ], 30,),
-#                widget.Systray(**widget_defaults) ], 30,),
     ),
 ]
 
@@ -181,7 +176,7 @@ main = None
 follow_mouse_focus = True
 bring_front_click = False
 cursor_warp = True
-#floating_layout = layout.Floating()
+
 # Automatically float these types. This overrides the default behavior (which
 # is to also float utility types), but the default behavior breaks our fancy
 # gimp slice layout specified later on.
@@ -191,6 +186,7 @@ floating_layout = layout.Floating(auto_float_types=[
   "splash",
   "dialog",
 ])
+
 auto_fullscreen = True
 wmname = "qtile"
 
