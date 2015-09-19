@@ -27,6 +27,14 @@ keys = [
         [], "XF86AudioMute",
         lazy.spawn("/home/serge/bin/vmute")
     ),
+    Key(
+        [], "XF86MonBrightnessUp",
+        lazy.spawn("/home/serge/bin/dup.sh")
+    ),
+    Key(
+        [], "XF86MonBrightnessDown",
+        lazy.spawn("/home/serge/bin/ddown.sh")
+    ),
     # Move windows up or down in current stack
     Key(
         [mod, "shift"], "k",
