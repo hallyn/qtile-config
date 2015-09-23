@@ -104,8 +104,8 @@ keys = [
     Key([mod, "control"], "q", lazy.shutdown()),
     Key([mod], "r", lazy.spawncmd()),
     Key([mod], "p", lazy.spawncmd()),
-    Key([mod], "s", lazy.function(winstash)),
-    Key([mod, "shift"], "s", lazy.function(winunstash)),
+    Key([mod], "i", lazy.function(winstash)),
+    Key([mod, "shift"], "i", lazy.function(winunstash)),
 ]
 
 groups = [Group(i) for i in "1234567890"]
