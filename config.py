@@ -4,6 +4,17 @@ from libqtile import layout, bar, widget
 
 mod = "mod4"
 
+def winstash(qtile):
+    w = qtile.currentWindow
+    if w is None:
+        return
+    w.togroup("X")
+
+def winunstash(qtile):
+    g = qtile.currentGroup
+    for w in qtile.groupMap["X"].windows:
+        w.togroup(g.name)
+
 keys = [
     # Switch between windows in current stack pane
     Key(
@@ -93,6 +104,8 @@ keys = [
     Key([mod, "control"], "q", lazy.shutdown()),
     Key([mod], "r", lazy.spawncmd()),
     Key([mod], "p", lazy.spawncmd()),
+    Key([mod], "s", lazy.function(winstash)),
+    Key([mod, "shift"], "s", lazy.function(winunstash)),
 ]
 
 groups = [Group(i) for i in "1234567890"]
@@ -108,16 +121,7 @@ for i in groups:
         Key([mod, "shift"], i.name, lazy.window.togroup(i.name))
     )
 
-#groups.extend([
-    #Group('music', spawn='clementine', layout='max', persist=False,
-          #matches=[Match(wm_class=['Clementine', 'Viridian'])]),
-    #Group('www', spawn='firefox-bin', layout='max',
-          #matches=[Match(wm_class=['Firefox', 'google-chrome', 'Google-chrome'])]),
-    #Group('irc', layout='max', persist=False,
-          #matches=[Match(wm_class=['ircterm'])]),
-    #Group('java', persist=False,
-          #matches=[Match(wm_class=['sun-awt-X11-XFramePeer', 'GroupWise'])]),
-#])
+groups.append(Group("X"))
 
 layouts = [
     layout.MonadTall(ratio=0.65),
@@ -181,8 +185,8 @@ mouse = [
 dgroups_key_binder = None
 dgroups_app_rules = []
 main = None
-follow_mouse_focus = True
 bring_front_click = False
+follow_mouse_focus = True
 cursor_warp = True
 
 # Automatically float these types. This overrides the default behavior (which
